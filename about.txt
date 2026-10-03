@@ -1,0 +1,16 @@
+AI Resume analyser:
+resume - puthon developer..backend
+
+python, flask, database, tidb, openai
+
+user login\signup
+dashboard
+
+resume pdf/docx
+upload - Data_Analyst.pdf
+Role : I want to become engineer
+tool : resume analyser
+skills :
+new skills:
+interview:
+project:
