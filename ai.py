@@ -8,10 +8,10 @@ from openai import OpenAI
 load_dotenv()
 
 client = OpenAI(
-    base_url=os.getenv("LLM_BASE_URL", "http://localhost:11434/v1/"),
-    api_key=os.getenv("LLM_API_KEY", "ollama"),
+    base_url=os.getenv("https://api.groq.com/openai/v1"),
+    api_key=os.getenv("LLM_API_KEY"),
 )
-MODEL = os.getenv("LLM_MODEL", "qwen3:4b")
+MODEL = os.getenv("LLM_MODEL", "llama-3.1-8b-instant")
 
 
 def analyze_resume(resume_text, user_goal):
