@@ -12,7 +12,7 @@ client = OpenAI(
     base_url="https://api.groq.com/openai/v1",
 
 )
-MODEL = os.getenv("LLM_MODEL", "llama-3.1-8b-instant")
+MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-20b")
 
 
 def analyze_resume(resume_text, user_goal):
