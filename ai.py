@@ -8,8 +8,9 @@ from openai import OpenAI
 load_dotenv()
 
 client = OpenAI(
-    base_url=os.getenv("https://api.groq.com/openai/v1"),
     api_key=os.getenv("LLM_API_KEY"),
+    base_url="https://api.groq.com/openai/v1",
+
 )
 MODEL = os.getenv("LLM_MODEL", "llama-3.1-8b-instant")
 
