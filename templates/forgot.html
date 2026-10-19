@@ -1,20 +1,26 @@
 {% extends "base.html" %}
 
+
 {% block content %}
-<div class="container">
-    <h2>Reset Password</h2>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Reset password</h2>
+    <p class="sub-text">Enter your email and a new password.</p>
 
     {% if error %}
-        <p style="color: red;">{{ error }}</p>
+      <div class="msg error">{{ error }}</div>
     {% endif %}
 
-    <form method="POST" action="/forgot-password">
-        <input type="email" name="email" placeholder="Your registered email" required>
-        <input type="password" name="new_password" placeholder="New password" required>
-        <input type="password" name="confirm_password" placeholder="Confirm new password" required>
-        <button type="submit">Reset Password</button>
+    <form method="POST" action="/forgot">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <input type="password" name="new_password" placeholder="New password" minlength="6" required>
+      <input type="password" name="confirm_password" placeholder="Confirm new password" minlength="6" required>
+      <button type="submit">Reset password</button>
     </form>
 
-    <p><a href="/login">Back to login</a></p>
+    <div class="auth-links">
+      <a href="/login">Back to login</a>
+    </div>
+  </div>
 </div>
 {% endblock %}

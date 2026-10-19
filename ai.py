@@ -26,6 +26,19 @@ def extract_json(content: str) -> dict:
         raise ValueError(f"Model did not return JSON. Got: {content[:200]!r}")
     return json.loads(content[start:end + 1])
 
+def _clean(value):
+    """Always return a list of plain strings."""
+    if value is None:
+        return []
+    if isinstance(value, (str, dict)):
+        value = [value]
+    out = []
+    for item in value:
+        if isinstance(item, dict):
+            item = ": ".join(str(v) for v in item.values())
+        out.append(str(item))
+    return out
+
 
 def analyze_resume(resume_text, user_goal):
     # 1. Validate input before spending an API call
@@ -56,6 +69,11 @@ Return only JSON in this format:
 "interview_questions": []
 }}
 
+Rules for the lists:
+- Every item must be a plain string, never an object.
+- roadmap: 5 to 8 steps in learning order. If there are few gaps, give steps to strengthen the closest skills for this goal.
+- interview_questions: 8 to 10 questions specific to the goal "{user_goal}".
+
 Resume:
 {resume_text}
 """
@@ -73,6 +91,7 @@ Resume:
 
         content = response.choices[0].message.content
         logger.info("Raw model output: %r", content)  # visible in Render logs
+        print("RAW MODEL OUTPUT:", content)
         return extract_json(content)
 
     except Exception as e:

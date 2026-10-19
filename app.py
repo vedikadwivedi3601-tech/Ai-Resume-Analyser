@@ -57,7 +57,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/forgot-password", methods=["GET", "POST"])
+@app.route("/forgot", methods=["GET", "POST"])
 def forgot_password():
     error = None
     if request.method == "POST":
@@ -82,6 +82,8 @@ def forgot_password():
             finally:
                 db.close()
     return render_template("forgot.html", error=error)
+
+@app.route("/history", methods=["GET", "POST"])
 def history():
     if "user" not in session:
         return redirect("/login")
